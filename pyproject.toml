@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "product-matcher"
+version = "0.1.0"
+description = "tool to match products across different eCommerce retailer to enhance the Product Catalog management for eCommerce sellers"
+authors = ["suri chen <sc4418@columbia.edu>"]
+readme = "README.md"
+packages = [{include = "product_matcher"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+jupyter = "^1.0.0"
+notebook = "^6.5.2"
+pandas = "^1.5.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
