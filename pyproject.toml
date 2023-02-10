@@ -11,8 +11,18 @@ python = "^3.8"
 jupyter = "^1.0.0"
 notebook = "^6.5.2"
 pandas = "^1.5.3"
+scikit-learn = "^1.2.1"
+nltk = "^3.8.1"
+spacy = "^3.5.0"
+
+
+[tool.poetry.dependencies.en_core_web_sm]
+url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0.tar.gz"
+[tool.poetry.dev-dependencies]
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
