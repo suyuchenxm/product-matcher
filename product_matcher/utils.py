@@ -8,6 +8,13 @@ import pandas as pd
 from hydra import compose, initialize_config_module
 from hydra.main import DictConfig
 
+from tensorflow.keras.callbacks import Callback
+import time
+
+import tensorflow as tf
+from tensorflow.keras.layers import Dense, Dropout
+from hydra.utils import instantiate
+
 
 def get_train(X_train, Y_train, training_size):
     return X_train[:training_size], Y_train[:training_size]
@@ -71,3 +78,49 @@ def load_data(cfg, PROJECT_PATH):
     Y_test = test['label'].values
 
     return train, test, X_train, Y_train, X_test, Y_test
+
+class timecallback(Callback):
+    def __init___(self):
+        self.predict_time = []
+    def on_train_begin(self, logs={}):
+        self._start_time = time.time()
+    def on_train_end(self, logs={}):
+        self._end_time = time.time()
+        self.training_time = self._end_time - self._start_time
+
+
+def get_f1(precision, recall):
+    return (2 * precision * recall) / (precision + recall)
+
+
+def create_nn_experiments(param, n_features, seed):
+    experiments1, experiments2 = [], []
+
+    for activation in param['activation']:
+        layers = [Dense(units=unit, activation=activation) for unit in param['units']]
+        models1 = [
+            tf.keras.Sequential(
+                [tf.keras.layers.InputLayer((n_features,)),
+                 layer,
+                 tf.keras.layers.Dense(1)]
+                )
+            for layer in layers
+            ]
+        models2 = [
+            tf.keras.Sequential(
+                [tf.keras.layers.InputLayer((n_features,)),
+                 layer,
+                 Dropout(0.2, seed=seed),
+                 tf.keras.layers.Dense(1)]
+                )
+            for layer in layers
+            ]
+        experiments1.append(
+            {"layer": "dense", "activation": activation, "models": models1,
+             "model_units": param["units"]}
+            )
+        experiments2.append(
+            {"layer": "dense_dropout", "activation": activation, "models": models2,
+             "model_units": param["units"]}
+            )
+    return experiments1 + experiments2

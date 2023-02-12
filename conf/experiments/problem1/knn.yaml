@@ -1,4 +1,4 @@
-name: adaboosting
+name: knn
 problem: problem1
 
 vectorizer: tfidf
@@ -10,4 +10,6 @@ model:
     k: [1, 5, 10, 15, 20, 25, 30]
     weights: ['uniform', 'distance']
     metric: minkowski
+
+score_metrics: ['accuracy', 'f1', 'recall', 'precision']
 
