@@ -1,0 +1,13 @@
+name: adaboosting
+problem: problem1
+
+vectorizer: tfidf
+
+data:
+    train_size: [100, 500, 1000, 5000, 8000, 10000, 30000, 50000, 80000]
+
+model:
+    k: [1, 5, 10, 15, 20, 25, 30]
+    weights: ['uniform', 'distance']
+    metric: minkowski
+

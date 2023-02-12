@@ -1,0 +1,13 @@
+name: decision_tree
+problem: problem1
+
+vectorizer: tfidf
+
+data:
+    train_size: [100, 500, 1000, 5000, 8000, 10000, 30000, 50000, 80000]
+
+model:
+    max_depth: [10, 50, 100, 150, 200]
+    criterion: ['gini', 'entropy', 'log_loss']
+    ccp_alpha: 0
+

@@ -1,0 +1,11 @@
+name: svm
+problem: problem1
+
+vectorizer: tfidf
+
+data:
+    train_size: [100, 500, 1000, 5000, 8000, 10000, 30000, 50000, 80000]
+
+model:
+    kernel: ['linear', 'poly', 'rbf', 'sigmoid']
+

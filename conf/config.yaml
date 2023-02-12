@@ -1,0 +1,36 @@
+defaults:
+  - experiments: problem1/decisiontree
+  - _self_
+
+project: product-mather
+studentid: schen713
+studentname: Suyu Chen
+problem: problem1
+
+today: ${now:%Y-%m-%d}
+
+artifacts:
+  training_data:
+    name: "data/${problem}_training_data.csv"
+    format: csv
+  testing_data:
+    name: "data/${problem}_testing_data.csv"
+    format: csv
+  hyperparameter_study:
+    name: "artifacts/${experiments.problem}/${experiments.name}_hyperparameter_study.pickle"
+    format: pickle
+  model:
+    name: "model/${problem}/${experiments.name}/model.pickle"
+    format: pickle
+  tfidf_vectorizer:
+    name: "model/${problem}/tfidf_vectorizer.pickle"
+    format: pickle
+  training_features:
+    name: "data/${problem}_${experiments.vectorizer}_train.pickle"
+    format: pickle
+  testing_features:
+    name: "data/${problem}_${experiments.vectorizer}_test.pickle"
+    format: pickle
+
+training_sizes:
+  problem1: [100, 500, 1000, 5000, 8000, 10000, 30000, 50000, 80000]
