@@ -15,7 +15,7 @@ model:
     layer2:
         - _target_: tensorflow.keras.layers.LSTM
           units: 16
-    units: [16, 64, 128. 256]
+    units: [16, 64, 128, 256]
 
 
 
