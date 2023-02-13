@@ -11,3 +11,4 @@ model:
     criterion: ['gini', 'entropy', 'log_loss']
     ccp_alpha: 0
 
+score_metrics: ['accuracy', 'f1', 'recall', 'precision']

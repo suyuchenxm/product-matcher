@@ -6,8 +6,16 @@ vectorizer: tfidf
 data:
     train_size: [100, 500, 1000, 5000, 8000, 10000, 30000, 50000, 80000]
 
-model:
-    learning_rate: [0.001, 0.01, 0.1]
-    n_sample: ['gini', 'entropy', 'log_loss']
-    n_tree: 0
+n_estimators: [50, 80, 100]
+score_metrics: ['accuracy', 'f1', 'recall', 'precision']
+
+estimators:
+    - _target_: sklearn.tree.DecisionTreeClassifier
+      max_depth: 1
+    - _target_: sklearn.tree.DecisionTreeClassifier
+      max_depth: 5
+    - _target_: sklearn.tree.DecisionTreeClassifier
+      max_depth: 10
+    - _target_: sklearn.svm.SVC
+      kernel: linear
 

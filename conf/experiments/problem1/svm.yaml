@@ -9,3 +9,5 @@ data:
 model:
     kernel: ['linear', 'poly', 'rbf', 'sigmoid']
 
+score_metrics: ['accuracy', 'f1', 'recall', 'precision']
+

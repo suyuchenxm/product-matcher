@@ -9,7 +9,7 @@ def plot_problem1_hyperparameters(data, model):
 		horizontal_spacing=.5,
 		shared_xaxes=True,
 		subplot_titles=("Fitting Time", "Scoring Time", "Accuracy",
-						"Recall", "Precision", "Accuracy")
+						"F1 score", "Precision", "Recall")
 		)
 
 	fig.add_trace(
