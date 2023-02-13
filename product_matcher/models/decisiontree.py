@@ -2,7 +2,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn import tree
 from product_matcher.utils import *
 SEED = 123
-PROJECT_PATH = ".."
+PROJECT_PATH = ""
 import hydra
 
 @hydra.main(version_base=None)
@@ -15,12 +15,12 @@ def run(cfg: DictConfig):
         'max_depth': cfg['experiments']['model']['max_depth'],
         'criterion': cfg['experiments']['model']['criterion']
     }
-    TRAINING_SIZE = cfg['training_sizes']['problem1']
+    training_sizes = cfg['experiments']['data']['train_size']
 
-    cv_results=dict()
-    for training_size in TRAINING_SIZE:
+    cv_results = dict()
+    for training_size in training_sizes:
         print(f"training size: {training_size}")
-        x,y = get_train(X_train, Y_train, training_size=training_size)
+        x, y = get_train(X_train, Y_train, training_size=training_size)
         clf = tree.DecisionTreeClassifier()
         gscv = GridSearchCV(clf,
                             param_grid=param_grid,
